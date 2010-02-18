@@ -107,7 +107,7 @@ module Seer
 #{data_table.to_s}
             var options = {};
 #{options}
-            var container = document.getElementById('chart');
+            var container = document.getElementById('#{self.chart_element}');
             var chart = new google.visualization.AreaChart(container);
             chart.draw(data, options);
           }
