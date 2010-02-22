@@ -34,7 +34,7 @@ describe "Seer::PieChart" do
 
   describe 'graph options' do
   
-    [:background_color, :border_color, :colors, :enable_tooltip, :focus_border_color, :height, :is_3_d, :legend, :legend_background_color, :legend_font_size, :legend_text_color, :pie_join_angle, :pie_minimal_angle, :title, :title_x, :title_y, :title_color, :title_font_size, :tooltip_font_size, :tooltip_height, :tooltip_width, :width].each do |accessor|
+    [:background_color, :border_color, :enable_tooltip, :focus_border_color, :height, :is_3_d, :legend, :legend_background_color, :legend_font_size, :legend_text_color, :pie_join_angle, :pie_minimal_angle, :title, :title_x, :title_y, :title_color, :title_font_size, :tooltip_font_size, :tooltip_height, :tooltip_width, :width].each do |accessor|
       it "sets its #{accessor} value" do
         @chart.send("#{accessor}=", 'foo')
         @chart.send(accessor).should == 'foo'

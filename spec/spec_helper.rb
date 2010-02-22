@@ -1,7 +1,8 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'actionpack'
+require 'rubygems'
 require 'activesupport'
+require 'actionpack'
 require 'spec'
 require 'spec/autorun'
 require 'seer'
