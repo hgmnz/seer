@@ -88,7 +88,9 @@ module Seer
     end
     
     def data_rows
-      data_series.flatten.map{|d| d.send(data_label)}.uniq
+      data_series.inject([]) do |rows, element|
+        rows |= element.map { |e| e.send(data_label) }
+      end
     end
 
     def nonstring_options #:nodoc:
