@@ -71,4 +71,30 @@ describe "Seer::LineChart" do
     @chart.data_table.to_s.should =~ /data\.setCell\(2,2,8\)/
   end
   
+  describe 'when data_series is an array of arrays of arrays/hashes' do
+    before(:each) do 
+      data_series = Array.new(3) {|i| [[i, i+1], [i+1, i+2]]}
+      @chart = Seer::LineChart.new(
+          :data => [0,1,2,3],
+          :series_label   => 'to_s',
+          :data_series => data_series,
+          :data_label => 'first',
+          :data_method => 'size',
+          :chart_options  => {},
+          :chart_element  => 'chart'
+       )
+     end
+
+    it 'calculates number of rows' do
+      @chart.data_columns.should =~ /addRows\(4\)/     
+    end
+    
+    it 'sets its data table' do 
+      @chart.data_table.to_s.should =~ /data\.setCell\(0, 0,'0'\)/
+      @chart.data_table.to_s.should =~ /data\.setCell\(1, 0,'1'\)/
+      @chart.data_table.to_s.should =~ /data\.setCell\(2, 0,'2'\)/
+      @chart.data_table.to_s.should =~ /data\.setCell\(3, 0,'3'\)/
+    end
+  end
+  
 end

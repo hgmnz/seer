@@ -96,4 +96,27 @@ describe "Seer::AreaChart" do
       @chart.data_table.to_s.should =~ /data\.setCell\(3, 0,'3'\)/
     end
   end
+  
+  describe 'should receive options' do 
+    before(:each) do 
+      data_series = Array.new(3) {|i| [[i, i+1], [i+1, i+2]]}
+      @options = {
+          :data => [0,1,2,3],
+          :series_label   => 'to_s',
+          :data_series => data_series,
+          :data_label => 'first',
+          :data_method => 'size',
+          :chart_options  => {},
+          :chart_element  => 'chart'
+      }
+    end
+    
+    it 'should receive :is_stacked option' do 
+      create_chart_with_option(:is_stacked => true).to_js.should =~ /options\['isStacked'\] = true/
+      end
+  end
+end
+
+def create_chart_with_option(option)
+      Seer::AreaChart.new(@options.merge(option))
 end

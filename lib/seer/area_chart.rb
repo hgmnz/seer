@@ -94,7 +94,7 @@ module Seer
     end
 
     def nonstring_options #:nodoc:
-      [ :axis_font_size, :colors, :enable_tooltip, :height, :legend_font_size, :line_size, :log_scale, :max, :min, :point_size, :reverse_axis, :show_categories, :title_font_size, :tooltip_font_size, :tooltip_height, :tooltip_width, :width]
+      [ :axis_font_size, :colors, :enable_tooltip, :height, :is_stacked, :legend_font_size, :line_size, :log_scale, :max, :min, :point_size, :reverse_axis, :show_categories, :title_font_size, :tooltip_font_size, :tooltip_height, :tooltip_width, :width]
     end
     
     def string_options #:nodoc:
