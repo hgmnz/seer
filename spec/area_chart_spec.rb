@@ -14,24 +14,8 @@ describe "Seer::AreaChart" do
      )
   end
   
-  describe 'defaults' do
-  
-    it 'colors' do
-      @chart.colors.should == Seer::Chart::DEFAULT_COLORS
-    end
-
-    it 'legend' do
-      @chart.legend.should == Seer::Chart::DEFAULT_LEGEND_LOCATION
-    end
-    
-    it 'height' do
-      @chart.height.should == Seer::Chart::DEFAULT_HEIGHT
-    end
-    
-    it 'width' do
-      @chart.width.should == Seer::Chart::DEFAULT_WIDTH
-    end
-    
+  describe 'defaults' do  
+    it_should_behave_like 'it sets default values'
   end
 
   describe 'graph options' do
@@ -42,6 +26,8 @@ describe "Seer::AreaChart" do
         @chart.send(accessor).should == 'foo'
       end
     end
+    
+    it_should_behave_like 'it has colors attribute'   
   end
   
   it 'renders as JavaScript' do
@@ -51,24 +37,24 @@ describe "Seer::AreaChart" do
   
   it 'sets its data columns' do
     @chart.data_columns.should =~ /addRows\(5\)/
-    @chart.data_columns.should =~ /addColumn\('string', 'Date'\)/
-    @chart.data_columns.should =~ /addColumn\('number', '0'\)/
-    @chart.data_columns.should =~ /addColumn\('number', '1'\)/
-    @chart.data_columns.should =~ /addColumn\('number', '2'\)/
-    @chart.data_columns.should =~ /addColumn\('number', '3'\)/
+    @chart.data_columns.should add_column('string', 'Date')
+    @chart.data_columns.should add_column('number', '0')
+    @chart.data_columns.should add_column('number', '1')
+    @chart.data_columns.should add_column('number', '2')
+    @chart.data_columns.should add_column('number', '3')
   end
   
   it 'sets its data table' do
-    @chart.data_table.to_s.should =~ /data\.setCell\(0, 0,'1'\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(1, 0,'2'\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(2, 0,'3'\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(3, 0,'4'\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(4, 0,'5'\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(0,1,8\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(2,1,8\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(0,2,8\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(1,2,8\)/
-    @chart.data_table.to_s.should =~ /data\.setCell\(2,2,8\)/
+    @chart.data_table.to_s.should set_cell(0, 0,'1')
+    @chart.data_table.to_s.should set_cell(1, 0,'2')
+    @chart.data_table.to_s.should set_cell(2, 0,'3')
+    @chart.data_table.to_s.should set_cell(3, 0,'4')
+    @chart.data_table.to_s.should set_cell(4, 0,'5')
+    @chart.data_table.to_s.should set_cell(0,1,8)
+    @chart.data_table.to_s.should set_cell(2,1,8)
+    @chart.data_table.to_s.should set_cell(0,2,8)
+    @chart.data_table.to_s.should set_cell(1,2,8)
+    @chart.data_table.to_s.should set_cell(2,2,8)
   end
   
   describe 'when data_series is an array of arrays of arrays/hashes' do
@@ -90,10 +76,10 @@ describe "Seer::AreaChart" do
     end
     
     it 'sets its data table' do 
-      @chart.data_table.to_s.should =~ /data\.setCell\(0, 0,'0'\)/
-      @chart.data_table.to_s.should =~ /data\.setCell\(1, 0,'1'\)/
-      @chart.data_table.to_s.should =~ /data\.setCell\(2, 0,'2'\)/
-      @chart.data_table.to_s.should =~ /data\.setCell\(3, 0,'3'\)/
+      @chart.data_table.to_s.should set_cell(0, 0,'0')
+      @chart.data_table.to_s.should set_cell(1, 0,'1')
+      @chart.data_table.to_s.should set_cell(2, 0,'2')
+      @chart.data_table.to_s.should set_cell(3, 0,'3')
     end
   end
   
